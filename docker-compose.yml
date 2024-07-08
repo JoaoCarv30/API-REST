@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  db-postgres-events:
+    image: postgres:alpine
+    ports:
+      - "5440:5432"  # mapeando porta 5432 do container para 5435 do host
+    container_name: db-postgres-events
+    restart: always
+    volumes:
+      - ./data/db-postgres-events:/var/lib/postgresql/data  # Ajuste aqui o volume
+    environment:
+      POSTGRES_USER: postgresUser
+      POSTGRES_PASSWORD: postgresPassword
+    networks:
+      - backend-network
+
+networks:
+  backend-network:
+
+volumes:
+  db-postgres-events:  # Definindo o volume aqui para ser usado pelo serviço
