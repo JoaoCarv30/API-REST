@@ -1,7 +1,7 @@
-import userRoutes from "./user.routes";
+import userRoutes from './user.routes.js';
 
-export const routes = app => {
+const routes = app => {
     userRoutes(app);
 }
 
-
+export default routes;
