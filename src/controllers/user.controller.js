@@ -1,8 +1,12 @@
 import bcrypt from 'bcrypt';
+import { userValidation } from '../validations/user.validation.js';
 import { createUser, getAllUsers, deleteUser, uptadeUser} from '../repositorys/user.repository.js'; 
 
 export const create = async (req, res) => {
   try {
+    await userValidation.validate(req.body); //Validação da biblioteca yup
+
+    
     const hashPassword = await bcrypt.hash(req.body.password, 10);
     req.body.password = hashPassword
     console.log(req.body);
