@@ -1,7 +1,10 @@
+import bcrypt from 'bcrypt';
 import { createUser, getAllUsers, deleteUser, uptadeUser} from '../repositorys/user.repository.js'; 
 
 export const create = async (req, res) => {
   try {
+    const hashPassword = await bcrypt.hash(req.body.password, 10);
+    req.body.password = hashPassword
     console.log(req.body);
     const user = await createUser(req.body);
     res.status(201).send(user);
@@ -22,7 +25,7 @@ export const allUsers = async (req, res) => {
 export const remove = async (req, res) => {
   try {
     await deleteUser(req.params.id);
-    res.status(204).send();
+    res.status(204).send("Usuário Deletado com Sucesso");
   } catch (error) {
     res.status(500).send({ message: 'Erro ao deletar usuário', error });
   }
