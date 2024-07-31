@@ -19,6 +19,7 @@ model User {
   name      String
   password  String
   phoneNumber String
+  imageUrl String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

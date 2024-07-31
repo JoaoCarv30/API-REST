@@ -3,9 +3,8 @@ import { prisma } from '../services/prisma.js';
 export const createUser = async (data) => {
   const user = await prisma.user.create({
     data,
-
-    });
-    return user;
+  });
+  return user;
 };
 
 export const getAllUsers = async () => {
@@ -19,9 +18,10 @@ export const deleteUser = async (id) => {
       id: Number(id),
     },
   });
+  return user;
 };
 
-export const uptadeUser = async (id, data) => {
+export const updateUser = async (id, data) => {
   const user = await prisma.user.update({
     where: {
       id: Number(id),
@@ -30,5 +30,3 @@ export const uptadeUser = async (id, data) => {
   });
   return user;
 };
-
-
